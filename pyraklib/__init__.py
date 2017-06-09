@@ -22,6 +22,7 @@ PyRakLib networking library.
 import warnings
 from pyraklib.PyRakLib import PyRakLib
 
+"""
 try:
     import requests
     ableToCheck = True
@@ -37,6 +38,8 @@ if ableToCheck:
             warnings.warn("You are not using the latest version of PyRakLib: The latest version is: "+v+", while you have: "+PyRakLib.LIBRARY_VERSION)
 
     checkForLatestVersion()
+
+"""
 
 __all__ = ['PyRakLib', 'Binary']
 
