@@ -31,14 +31,13 @@ class UDPServerSocket:
         self.logger = logger
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         try:
+        	self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            #self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+            self.socket.setblocking(False) # Non-blocking
             self.socket.bind((interface, port))
         except Exception as e:
             logger.error("FAILED TO BIND TO PORT! Perhaps another server is running on the port?")
             logger.error(str(e))
-        finally:
-            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-            self.socket.setblocking(False) # Non-blocking
 
     def close(self):
         self.socket.close()
